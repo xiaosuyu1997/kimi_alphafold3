@@ -24,7 +24,7 @@ This document maps the algorithms and architectural components described in Supp
 |-----------|---------------|-------------|
 | `InputFeatureEmbedder` | [`alphafold3/model/network/featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py) | Creates initial single (1D) embeddings from input features |
 | `create_target_feat` | [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py) ~L1-L100 | Constructs target feature vector from token features |
-| Atom conditioning | [`atom_cross_attention.py`](../alphafold3_repo/src/alphafold3/model/network/atom_cross_attention.py) | Per-atom conditioning in input embedder |
+| Atom conditioning | [`atom_cross_attention.py`](../alphafold3_repo/src/alphafold3/model/network/atom_cross_attention.py#L34-L96) | Per-atom conditioning in input embedder |
 
 **Key Code References:**
 - [`evoformer.py:148-171`](../alphafold3_repo/src/alphafold3/model/network/evoformer.py#L148-L171) - `create_target_feat_embedding` function
@@ -36,8 +36,8 @@ This document maps the algorithms and architectural components described in Supp
 
 | Component | Code Location | Line Range |
 |-----------|---------------|------------|
-| `RelativePositionEncoding` | [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py) | ~L100-L200 |
-| `create_relative_encoding` | [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py) | L100-L200 |
+| `RelativePositionEncoding` | [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py#L100-L200) | Creates relative position encodings |
+| `create_relative_encoding` | [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py#L100-L200) | Function to create relative position encoding |
 
 **Key Code References:**
 - [`evoformer.py:77-91`](../alphafold3_repo/src/alphafold3/model/network/evoformer.py#L77-L91) - `_relative_encoding` method
@@ -76,7 +76,7 @@ This document maps the algorithms and architectural components described in Supp
 
 **Key Implementation Details:**
 - MSA stack: [`evoformer.py:223-241`](../alphafold3_repo/src/alphafold3/model/network/evoformer.py#L223-L241)
-- MSA feature creation: [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py)
+- MSA feature creation: [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py#L50-L150)
 
 ---
 
@@ -103,7 +103,7 @@ This document maps the algorithms and architectural components described in Supp
 | Component | Code Location | Key Classes |
 |-----------|---------------|-------------|
 | `TemplateEmbedder` | [`template_modules.py`](../alphafold3_repo/src/alphafold3/model/network/template_modules.py) | `TemplateEmbedding` |
-| Distogram features | [`template_modules.py`](../alphafold3_repo/src/alphafold3/model/network/template_modules.py) | `dgram_from_positions` |
+| Distogram features | [`template_modules.py`](../alphafold3_repo/src/alphafold3/model/network/template_modules.py#L37-L50) | `dgram_from_positions` |
 
 **Integration with Evoformer:**
 - Template embedding: [`evoformer.py:170-198`](../alphafold3_repo/src/alphafold3/model/network/evoformer.py#L170-L198)
@@ -201,11 +201,11 @@ This document maps the algorithms and architectural components described in Supp
 | [`diffusion_head.py`](../alphafold3_repo/src/alphafold3/model/network/diffusion_head.py) | Diffusion module | `DiffusionHead`, `sample`, `_conditioning` |
 | [`diffusion_transformer.py`](../alphafold3_repo/src/alphafold3/model/network/diffusion_transformer.py) | Diffusion transformer | `Transformer`, `self_attention`, `CrossAttTransformer` |
 | [`atom_cross_attention.py`](../alphafold3_repo/src/alphafold3/model/network/atom_cross_attention.py) | Atom-level attention | `atom_cross_att_encoder`, `atom_cross_att_decoder` |
-| [`confidence_head.py`](../alphafold3_repo/src/alphafold3/model/network/confidence_head.py) | Confidence prediction | `ConfidenceHead` |
-| [`template_modules.py`](../alphafold3_repo/src/alphafold3/model/network/template_modules.py) | Template embedding | `TemplateEmbedding` |
-| [`distogram_head.py`](../alphafold3_repo/src/alphafold3/model/network/distogram_head.py) | Distogram prediction | `DistogramHead` |
-| [`featurization.py`](../alphafold3_repo/src/alphafold3/model/network/featurization.py) | Input featurization | `create_target_feat`, `create_msa_feat`, `create_relative_encoding` |
-| [`noise_level_embeddings.py`](../alphafold3_repo/src/alphafold3/model/network/noise_level_embeddings.py) | Noise level embeddings | `noise_embeddings` |
+| [`confidence_head.py:1-50`](../alphafold3_repo/src/alphafold3/model/network/confidence_head.py) | Confidence prediction | `ConfidenceHead` |
+| [`template_modules.py:1-50`](../alphafold3_repo/src/alphafold3/model/network/template_modules.py) | Template embedding | `TemplateEmbedding` |
+| [`distogram_head.py:1-50`](../alphafold3_repo/src/alphafold3/model/network/distogram_head.py) | Distogram prediction | `DistogramHead` |
+| [`featurization.py:1-50`](../alphafold3_repo/src/alphafold3/model/network/featurization.py) | Input featurization | `create_target_feat`, `create_msa_feat`, `create_relative_encoding` |
+| [`noise_level_embeddings.py:1-50`](../alphafold3_repo/src/alphafold3/model/network/noise_level_embeddings.py) | Noise level embeddings | `noise_embeddings` |
 
 ### Main Model Files
 
